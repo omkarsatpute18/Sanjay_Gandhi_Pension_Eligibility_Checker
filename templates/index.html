@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Based Sanjay Gandhi Niradhar Pension Yojana Eligibility Prediction System | Government of Maharashtra</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --navy:#0b3558;
+  --navy-dark:#082641;
+  --navy-light:#144a7c;
+  --saffron:#ff9933;
+  --saffron-dark:#e07b00;
+  --green:#0e8a3e;
+  --green-dark:#0a6b30;
+  --bg:#f3f5f8;
+  --card:#ffffff;
+  --ink:#1b2a3a;
+  --muted:#5c6b7a;
+  --border:#e2e7ee;
+  --radius:16px;
+  --shadow:0 10px 30px rgba(11,53,88,.08);
+  --shadow-hover:0 16px 40px rgba(11,53,88,.14);
+}
+
+*{box-sizing:border-box;}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  overflow-x:hidden;
+  transition:background .3s ease,color .3s ease;
+}
+
+body.dark-mode{
+  --bg:#0d1620;
+  --card:#132435;
+  --ink:#e8edf3;
+  --muted:#9fb0c0;
+  --border:#1f3348;
+}
+
+h1,h2,h3,h4,h5{font-weight:700;letter-spacing:-.02em;}
+
+/* Scroll progress bar */
+#scrollProgress{
+  position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--saffron),var(--green));
+  z-index:2000;width:0%;transition:width .1s ease;
+}
+
+/* Top strip */
+.top-strip{
+  background:var(--navy-dark);
+  color:#cfe0f0;
+  font-size:.8rem;
+  padding:6px 0;
+}
+.top-strip a{color:#cfe0f0;text-decoration:none;margin-left:14px;}
+.top-strip a:hover{color:var(--saffron);}
+
+/* Header */
+.gov-header{
+  background:linear-gradient(135deg,var(--navy) 0%, var(--navy-dark) 100%);
+  color:#fff;
+  padding:18px 0;
+  position:relative;
+  overflow:hidden;
+}
+.gov-header::after{
+  content:"";
+  position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--saffron) 0 33%, #fff 33% 66%, var(--green) 66% 100%);
+}
+.emblem-circle{
+  width:58px;height:58px;border-radius:50%;
+  background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow);
+  flex-shrink:0;
+}
+.emblem-circle i{font-size:1.6rem;color:var(--navy);}
+.header-title h1{
+  font-size:1.15rem;margin:0;color:#fff;font-weight:700;
+}
+.header-title p{margin:0;font-size:.78rem;color:#cfe0f0;}
+.header-title .scheme-name{
+  font-size:.72rem;color:var(--saffron);font-weight:600;margin-top:2px;
+}
+
+/* Navbar */
+.navbar-gov{
+  background:#fff;
+  box-shadow:0 2px 10px rgba(0,0,0,.06);
+  position:sticky;top:0;z-index:1000;
+  transition:box-shadow .3s ease;
+}
+.navbar-gov.scrolled{box-shadow:0 6px 24px rgba(11,53,88,.15);}
+.navbar-gov .nav-link{
+  color:var(--navy)!important;font-weight:500;margin:0 6px;position:relative;
+}
+.navbar-gov .nav-link::after{
+  content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--saffron);transition:width .25s ease;
+}
+.navbar-gov .nav-link:hover::after,.navbar-gov .nav-link.active::after{width:100%;}
+.navbar-gov .nav-link:hover{color:var(--saffron-dark)!important;}
+.btn-mode{
+  border:1px solid var(--border);background:transparent;border-radius:50px;width:38px;height:38px;
+  display:flex;align-items:center;justify-content:center;color:var(--navy);
+}
+body.dark-mode .navbar-gov{background:var(--card);}
+body.dark-mode .navbar-gov .nav-link{color:var(--ink)!important;}
+
+/* Hero */
+.hero{
+  position:relative;
+  background:radial-gradient(1200px 500px at 80% -10%, rgba(255,153,51,.12), transparent),
+             radial-gradient(1000px 500px at 10% 110%, rgba(14,138,62,.10), transparent),
+             linear-gradient(180deg,#eef3f8 0%, var(--bg) 100%);
+  padding:90px 0 70px;
+  overflow:hidden;
+}
+.shape{position:absolute;border-radius:50%;opacity:.25;filter:blur(2px);animation:float 8s ease-in-out infinite;}
+.shape1{width:120px;height:120px;background:var(--saffron);top:10%;left:5%;animation-delay:0s;}
+.shape2{width:80px;height:80px;background:var(--green);top:60%;left:12%;animation-delay:1.5s;}
+.shape3{width:160px;height:160px;background:var(--navy-light);top:15%;right:8%;animation-delay:.8s;}
+.shape4{width:60px;height:60px;background:var(--saffron);bottom:10%;right:15%;animation-delay:2.2s;}
+@keyframes float{
+  0%,100%{transform:translateY(0px) rotate(0deg);}
+  50%{transform:translateY(-25px) rotate(15deg);}
+}
+.badge-ai{
+  background:linear-gradient(90deg,var(--saffron),var(--saffron-dark));
+  color:#fff;font-weight:600;font-size:.75rem;padding:6px 16px;border-radius:50px;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.hero h2{
+  font-size:2.6rem;color:var(--navy);margin:18px 0;line-height:1.15;
+}
+.hero h2 span{color:var(--saffron-dark);}
+.hero p.lead-text{color:var(--muted);font-size:1.05rem;max-width:560px;}
+.btn-gov-primary{
+  background:linear-gradient(90deg,var(--navy),var(--navy-light));
+  color:#fff;border:none;border-radius:50px;padding:13px 30px;font-weight:600;
+  box-shadow:0 8px 20px rgba(11,53,88,.25);transition:transform .25s ease, box-shadow .25s ease;
+}
+.btn-gov-primary:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(11,53,88,.35);color:#fff;}
+.btn-gov-outline{
+  border:2px solid var(--navy);color:var(--navy);border-radius:50px;padding:11px 28px;font-weight:600;
+  background:transparent;transition:all .25s ease;
+}
+.btn-gov-outline:hover{background:var(--navy);color:#fff;transform:translateY(-3px);}
+.hero-illustration{
+  background:#fff;border-radius:24px;box-shadow:var(--shadow);padding:30px;position:relative;z-index:2;
+}
+
+/* Section titles */
+.section-eyebrow{
+  color:var(--saffron-dark);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.75rem;
+}
+.section-title{color:var(--navy);font-size:2rem;margin-bottom:10px;}
+.section-sub{color:var(--muted);max-width:640px;}
+section{padding:70px 0;}
+body.dark-mode .section-title{color:#fff;}
+
+/* Cards */
+.gov-card{
+  background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:30px 24px;height:100%;transition:transform .3s ease, box-shadow .3s ease;border:1px solid var(--border);
+}
+.gov-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-hover);}
+.icon-box{
+  width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;font-size:1.4rem;margin-bottom:16px;
+}
+.icon-box.saffron{background:linear-gradient(135deg,var(--saffron),var(--saffron-dark));}
+.icon-box.green{background:linear-gradient(135deg,var(--green),var(--green-dark));}
+
+/* Form */
+.form-section{
+  background:linear-gradient(180deg,#eef3f8, var(--bg));
+}
+.form-card{
+  background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:40px;border-top:5px solid var(--saffron);
+}
+.form-label{font-weight:600;color:var(--navy);font-size:.88rem;}
+body.dark-mode .form-label{color:#fff;}
+.input-icon-group{position:relative;}
+.input-icon-group i{
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);z-index:5;
+}
+.input-icon-group .form-control,.input-icon-group .form-select{
+  padding-left:40px;border-radius:10px;border:1.5px solid var(--border);padding-top:10px;padding-bottom:10px;
+  background:var(--card);color:var(--ink);
+}
+.form-control:focus,.form-select:focus{
+  border-color:var(--saffron);box-shadow:0 0 0 .2rem rgba(255,153,51,.18);
+}
+.invalid-feedback{font-size:.75rem;}
+
+/* Result card */
+#resultSection{display:none;}
+.result-card{
+  border-radius:20px;padding:36px;text-align:center;box-shadow:var(--shadow-hover);
+  animation:popIn .5s ease;
+}
+@keyframes popIn{from{opacity:0;transform:scale(.9) translateY(20px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.result-card.eligible{background:linear-gradient(135deg,#e8f8ee,#d3f3e0);border:2px solid var(--green);}
+.result-card.not-eligible{background:linear-gradient(135deg,#fdecec,#fbdcdc);border:2px solid #c0392b;}
+.result-icon{font-size:3.5rem;margin-bottom:10px;}
+.result-icon.eligible{color:var(--green);}
+.result-icon.not-eligible{color:#c0392b;}
+.confidence-bar-wrap{
+  background:#e2e7ee;border-radius:50px;height:14px;overflow:hidden;max-width:400px;margin:16px auto;
+}
+.confidence-bar{height:100%;border-radius:50px;transition:width 1.2s ease;}
+
+/* Workflow */
+.workflow-wrap{position:relative;}
+.workflow-step{text-align:center;position:relative;}
+.workflow-num{
+  width:64px;height:64px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;font-size:1.3rem;
+  display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:var(--shadow);
+}
+.workflow-arrow{
+  position:absolute;top:32px;right:-30px;color:var(--saffron);font-size:1.4rem;display:none;
+}
+@media(min-width:992px){.workflow-arrow{display:block;}}
+
+/* Stats */
+.stats-section{
+  background:linear-gradient(135deg,var(--navy),var(--navy-dark));color:#fff;position:relative;
+}
+.stat-num{font-size:2.6rem;font-weight:800;color:var(--saffron);}
+.stat-label{color:#cfe0f0;font-size:.9rem;}
+
+/* FAQ */
+.accordion-button{font-weight:600;color:var(--navy);}
+.accordion-button:not(.collapsed){background:#fff7ee;color:var(--saffron-dark);}
+.accordion-button:focus{box-shadow:none;}
+body.dark-mode .accordion-item{background:var(--card);color:var(--ink);}
+body.dark-mode .accordion-button{background:var(--card);color:var(--ink);}
+body.dark-mode .accordion-button:not(.collapsed){background:#1e3450;color:var(--saffron);}
+
+/* Contact */
+.contact-card{
+  background:var(--card);border-radius:16px;padding:26px;box-shadow:var(--shadow);border-left:4px solid var(--green);height:100%;
+}
+.map-placeholder{
+  background:linear-gradient(135deg,#dfe7ee,#c9d6e2);border-radius:16px;height:280px;
+  display:flex;align-items:center;justify-content:center;color:var(--muted);flex-direction:column;gap:8px;
+}
+
+/* Footer */
+footer{background:var(--navy-dark);color:#cfe0f0;padding:50px 0 20px;}
+footer h5{color:#fff;}
+footer a{color:#cfe0f0;text-decoration:none;}
+footer a:hover{color:var(--saffron);}
+.social-icon{
+  width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;
+  margin-right:8px;transition:.25s;
+}
+.social-icon:hover{background:var(--saffron);}
+.footer-divider{border-color:rgba(255,255,255,.1);}
+
+/* Back to top */
+#backToTop{
+  position:fixed;bottom:26px;right:26px;width:48px;height:48px;border-radius:50%;
+  background:var(--saffron);color:#fff;border:none;box-shadow:var(--shadow-hover);display:none;z-index:900;
+}
+
+/* Loader */
+#pageLoader{
+  position:fixed;inset:0;background:var(--navy);z-index:3000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;
+  transition:opacity .5s ease, visibility .5s ease;
+}
+.loader-ring{width:60px;height:60px;border:5px solid rgba(255,255,255,.2);border-top-color:var(--saffron);border-radius:50%;animation:spin 1s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+#pageLoader p{color:#fff;font-weight:500;letter-spacing:.05em;font-size:.85rem;}
+
+/* Toast */
+.toast-container{z-index:2500;}
+
+/* Fade in on scroll */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease, transform .6s ease;}
+.reveal.show{opacity:1;transform:translateY(0);}
+
+/* Counters visibility helper */
+.counted{transition:none;}
+
+@media(max-width:768px){
+  .hero h2{font-size:1.9rem;}
+  .header-title h1{font-size:.95rem;}
+  section{padding:50px 0;}
+}
+</style>
+</head>
+<body>
+
+<!-- Loader -->
+<div id="pageLoader">
+  <div class="loader-ring"></div>
+  <p>LOADING GOVERNMENT PORTAL...</p>
+</div>
+
+<div id="scrollProgress"></div>
+
+<!-- Top strip -->
+<div class="top-strip">
+  <div class="container d-flex justify-content-between align-items-center flex-wrap">
+    <span><i class="fa-solid fa-landmark me-1"></i> Government of Maharashtra | Department of Social Justice &amp; Special Assistance</span>
+    <span class="d-none d-md-inline">
+      <a href="#"><i class="fa-solid fa-language me-1"></i>मराठी</a>
+      <a href="#"><i class="fa-solid fa-eye me-1"></i>Screen Reader</a>
+      <a href="#"><i class="fa-solid fa-text-height me-1"></i>A+ A A-</a>
+    </span>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="gov-header">
+  <div class="container d-flex align-items-center justify-content-between flex-wrap gy-3">
+    <div class="d-flex align-items-center gap-3">
+      <div class="emblem-circle"><i class="fa-solid fa-building-columns"></i></div>
+      <div class="emblem-circle d-none d-sm-flex"><i class="fa-brands fa-digital-ocean" style="color:#0b3558"></i></div>
+    </div>
+    <div class="header-title text-center flex-grow-1">
+      <h1>Government of Maharashtra</h1>
+      <p>Department of Social Justice and Special Assistance</p>
+      <div class="scheme-name">AI-Based Sanjay Gandhi Niradhar Pension Yojana Eligibility Prediction System</div>
+    </div>
+    <div class="d-flex align-items-center gap-3">
+      <div class="emblem-circle"><i class="fa-solid fa-shield-halved"></i></div>
+      <div class="emblem-circle d-none d-sm-flex"><i class="fa-solid fa-robot"></i></div>
+    </div>
+  </div>
+</header>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-gov" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-navy d-lg-none" style="color:var(--navy)" href="#home">SGNPY Portal</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navContent">
+      <ul class="navbar-nav gap-2">
+        <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About Scheme</a></li>
+        <li class="nav-item"><a class="nav-link" href="#eligibility">Eligibility Checker</a></li>
+        <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <button class="btn-mode" id="darkModeToggle" title="Toggle dark mode">
+      <i class="fa-solid fa-moon"></i>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="shape shape1"></div>
+  <div class="shape shape2"></div>
+  <div class="shape shape3"></div>
+  <div class="shape shape4"></div>
+  <div class="container position-relative">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 reveal">
+        <span class="badge-ai"><i class="fa-solid fa-microchip"></i> Powered by Artificial Intelligence</span>
+        <h2>Check Your Eligibility <span>Instantly</span> Using Artificial Intelligence</h2>
+        <p class="lead-text">This intelligent system predicts whether an applicant is eligible for the Sanjay Gandhi Niradhar Pension Scheme using Machine Learning, giving fast, transparent, and accurate results.</p>
+        <div class="d-flex gap-3 flex-wrap mt-4">
+          <a href="#eligibility" class="btn btn-gov-primary"><i class="fa-solid fa-clipboard-check me-2"></i>Check Eligibility</a>
+          <a href="#about" class="btn btn-gov-outline">Learn More</a>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="hero-illustration">
+          <svg viewBox="0 0 500 340" xmlns="http://www.w3.org/2000/svg" width="100%">
+            <rect x="0" y="0" width="500" height="340" rx="16" fill="#f3f5f8"/>
+            <rect x="60" y="60" width="380" height="220" rx="10" fill="#ffffff" stroke="#e2e7ee" stroke-width="2"/>
+            <rect x="90" y="90" width="120" height="14" rx="4" fill="#0b3558"/>
+            <rect x="90" y="118" width="200" height="8" rx="4" fill="#c9d6e2"/>
+            <rect x="90" y="136" width="160" height="8" rx="4" fill="#c9d6e2"/>
+            <circle cx="360" cy="140" r="42" fill="#ff9933" opacity=".15"/>
+            <circle cx="360" cy="140" r="26" fill="#ff9933"/>
+            <path d="M348 140 l8 8 l16 -18" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="90" y="180" width="320" height="60" rx="8" fill="#0e8a3e" opacity=".1"/>
+            <rect x="105" y="195" width="110" height="10" rx="4" fill="#0e8a3e"/>
+            <rect x="105" y="212" width="180" height="8" rx="4" fill="#0e8a3e" opacity=".5"/>
+            <circle cx="150" cy="40" r="14" fill="#0b3558" opacity=".15"/>
+            <circle cx="420" cy="290" r="20" fill="#ff9933" opacity=".15"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="section-eyebrow">About the Scheme</div>
+      <h2 class="section-title">Sanjay Gandhi Niradhar Pension Yojana</h2>
+      <p class="section-sub mx-auto">The Sanjay Gandhi Niradhar Pension Scheme provides financial assistance to economically weaker and destitute citizens of Maharashtra, ensuring dignity and support for those in need.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="gov-card text-center">
+          <div class="icon-box mx-auto"><i class="fa-solid fa-brain"></i></div>
+          <h5>AI Prediction</h5>
+          <p class="text-muted small mb-0">Machine learning model trained on real applicant data for reliable predictions.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="gov-card text-center">
+          <div class="icon-box saffron mx-auto"><i class="fa-solid fa-bolt"></i></div>
+          <h5>Fast Processing</h5>
+          <p class="text-muted small mb-0">Get your eligibility result in seconds, no waiting in queues.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="gov-card text-center">
+          <div class="icon-box green mx-auto"><i class="fa-solid fa-bullseye"></i></div>
+          <h5>Accurate Results</h5>
+          <p class="text-muted small mb-0">High accuracy model validated against government eligibility norms.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="gov-card text-center">
+          <div class="icon-box mx-auto"><i class="fa-solid fa-eye"></i></div>
+          <h5>Transparent Decisions</h5>
+          <p class="text-muted small mb-0">Every prediction comes with a clear reason and recommendation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Eligibility Form -->
+<section id="eligibility" class="form-section">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="section-eyebrow">Eligibility Checker</div>
+      <h2 class="section-title">Applicant Eligibility Prediction Form</h2>
+      <p class="section-sub mx-auto">Fill in the details below carefully. Fields marked are required for accurate AI-based prediction.</p>
+    </div>
+
+    <div class="form-card reveal">
+      <form id="eligibilityForm" novalidate>
+        <div class="row g-4">
+
+          <div class="col-12">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <span class="badge rounded-pill" style="background:var(--navy);">Section A</span>
+              <h6 class="mb-0" style="color:var(--navy)">Personal &amp; Location Details</h6>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Age</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-cake-candles"></i>
+              <input type="number" min="0" max="120" class="form-control" id="age" placeholder="Age in years" required>
+            </div>
+            <div class="invalid-feedback">Please enter a valid age.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Gender</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-venus-mars"></i>
+              <select class="form-select" id="gender" required>
+                <option value="" selected disabled>Select gender</option>
+                <option>Male</option><option>Female</option><option>Other</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select gender.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">District</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-map-location-dot"></i>
+              <select class="form-select" id="district" required>
+                <option value="" selected disabled>Select district</option>
+                <option>Mumbai</option><option>Pune</option><option>Nagpur</option><option>Nashik</option>
+                <option>Nanded</option><option>Aurangabad</option><option>Kolhapur</option><option>Solapur</option>
+                <option>Amravati</option><option>Other</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select district.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Taluka</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-location-dot"></i>
+              <input type="text" class="form-control" id="taluka" placeholder="Enter taluka name" required>
+            </div>
+            <div class="invalid-feedback">Please enter taluka.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Residence Years</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-house-user"></i>
+              <input type="number" min="0" class="form-control" id="residenceYears" placeholder="Years living at current address" required>
+            </div>
+            <div class="invalid-feedback">Please enter residence years.</div>
+          </div>
+
+          <div class="col-12 mt-4">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <span class="badge rounded-pill" style="background:var(--green);">Section C</span>
+              <h6 class="mb-0" style="color:var(--navy)">Economic &amp; Family Details</h6>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Annual Family Income (₹)</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-indian-rupee-sign"></i>
+              <input type="number" min="0" class="form-control" id="annualIncome" placeholder="e.g. 21000" required>
+            </div>
+            <div class="invalid-feedback">Please enter annual family income.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Monthly Expenses (₹)</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-wallet"></i>
+              <input type="number" min="0" class="form-control" id="monthlyExpenses" placeholder="e.g. 3500" required>
+            </div>
+            <div class="invalid-feedback">Please enter monthly expenses.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Family Size</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-people-roof"></i>
+              <input type="number" min="1" class="form-control" id="familySize" placeholder="Total family members" required>
+            </div>
+            <div class="invalid-feedback">Please enter family size.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Marital Status</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-ring"></i>
+              <select class="form-select" id="maritalStatus" required>
+                <option value="" selected disabled>Select status</option>
+                <option>Single</option><option>Married</option><option>Widowed</option><option>Divorced</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select marital status.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Occupation</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-briefcase"></i>
+              <select class="form-select" id="occupation" required>
+                <option value="" selected disabled>Select occupation</option>
+                <option>Farmer</option><option>Laborer</option><option>Self-Employed</option>
+                <option>Government Employee</option><option>Private Employee</option>
+                <option>Housewife</option><option>Student</option><option>Unemployed</option><option>Other</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select occupation.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Education</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <select class="form-select" id="education" required>
+                <option value="" selected disabled>Select education</option>
+                <option>Illiterate</option><option>Primary</option><option>Secondary</option>
+                <option>Higher Secondary</option><option>Graduate</option><option>Post Graduate</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select education level.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Employment Status</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-user-tie"></i>
+              <select class="form-select" id="employmentStatus" required>
+                <option value="" selected disabled>Select status</option>
+                <option>Employed</option><option>Unemployed</option><option>Self-Employed</option><option>Retired</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select employment status.</div>
+          </div>
+
+          <div class="col-12 mt-4">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <span class="badge rounded-pill" style="background:var(--navy);">Section D</span>
+              <h6 class="mb-0" style="color:var(--navy)">Health &amp; Vulnerability Details</h6>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Disability Status</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-wheelchair"></i>
+              <select class="form-select" id="disabilityStatus" required>
+                <option value="" selected disabled>Select status</option>
+                <option>Yes</option><option>No</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select disability status.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Disability Percentage (%)</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-percent"></i>
+              <input type="number" min="0" max="100" class="form-control" id="disabilityPercent" placeholder="0 - 100" required>
+            </div>
+            <div class="invalid-feedback">Please enter disability percentage (0 if none).</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Chronic Disease</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-notes-medical"></i>
+              <select class="form-select" id="chronicDisease" required>
+                <option value="" selected disabled>Select status</option>
+                <option>Yes</option><option>No</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select chronic disease status.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Disease Type</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-file-medical"></i>
+              <input type="text" class="form-control" id="diseaseType" placeholder="e.g. Diabetes, None">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Widow</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-person-dress"></i>
+              <select class="form-select" id="widowStatus" required>
+                <option value="" selected disabled>Select status</option>
+                <option>Yes</option><option>No</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select widow status.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Divorced</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-file-circle-xmark"></i>
+              <select class="form-select" id="divorcedStatus" required>
+                <option value="" selected disabled>Select status</option>
+                <option>Yes</option><option>No</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select divorced status.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Destitute</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-hand-holding-heart"></i>
+              <select class="form-select" id="destituteStatus" required>
+                <option value="" selected disabled>Select status</option>
+                <option>Yes</option><option>No</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select destitute status.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Orphan</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-child-reaching"></i>
+              <select class="form-select" id="orphanStatus" required>
+                <option value="" selected disabled>Select status</option>
+                <option>Yes</option><option>No</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select orphan status.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Senior Citizen</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-person-cane"></i>
+              <select class="form-select" id="seniorCitizen" required>
+                <option value="" selected disabled>Select status</option>
+                <option>Yes</option><option>No</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select senior citizen status.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">BPL Status</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-house-chimney-crack"></i>
+              <select class="form-select" id="bplStatus" required>
+                <option value="" selected disabled>Select status</option>
+                <option>Yes</option><option>No</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select BPL status.</div>
+          </div>
+
+          <div class="col-12 mt-4">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <span class="badge rounded-pill" style="background:var(--saffron-dark);">Section E</span>
+              <h6 class="mb-0" style="color:var(--navy)">Assets &amp; Documentation</h6>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">House Ownership</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-house"></i>
+              <select class="form-select" id="houseOwnership" required>
+                <option value="" selected disabled>Select ownership</option>
+                <option>Owned</option><option>Rented</option><option>Homeless</option><option>Encroached / Slum</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select house ownership.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Land Ownership (acres)</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-tractor"></i>
+              <input type="number" min="0" step="0.1" class="form-control" id="landOwnership" placeholder="0 if none" required>
+            </div>
+            <div class="invalid-feedback">Please enter land ownership.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Aadhaar Linked</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-fingerprint"></i>
+              <select class="form-select" id="aadhaarLinked" required>
+                <option value="" selected disabled>Select status</option>
+                <option>Yes</option><option>No</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select Aadhaar linkage status.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Bank Account</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-building-columns"></i>
+              <select class="form-select" id="bankAccount" required>
+                <option value="" selected disabled>Select status</option>
+                <option>Yes</option><option>No</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select bank account status.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Mobile Linked</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-mobile-screen"></i>
+              <select class="form-select" id="mobileLinked" required>
+                <option value="" selected disabled>Select status</option>
+                <option>Yes</option><option>No</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select mobile linkage status.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Income Certificate</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-file-invoice"></i>
+              <select class="form-select" id="incomeCertificate" required>
+                <option value="" selected disabled>Select status</option>
+                <option>Yes</option><option>No</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select income certificate status.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Disability Certificate</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-file-medical"></i>
+              <select class="form-select" id="disabilityCertificate" required>
+                <option value="" selected disabled>Select status</option>
+                <option>Yes</option><option>No</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select disability certificate status.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Ration Card</label>
+            <div class="input-icon-group">
+              <i class="fa-solid fa-id-badge"></i>
+              <select class="form-select" id="rationCard" required>
+                <option value="" selected disabled>Select status</option>
+                <option>Yes</option><option>No</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please select ration card status.</div>
+          </div>
+
+        </div>
+
+        <div class="text-center mt-5">
+          <button type="submit" class="btn btn-gov-primary btn-lg px-5" id="predictBtn">
+            <i class="fa-solid fa-wand-magic-sparkles me-2"></i>Predict Eligibility
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Result -->
+    <div id="resultSection" class="mt-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-7">
+          <div class="result-card" id="resultCard">
+            <div class="result-icon" id="resultIcon"></div>
+            <h3 id="resultTitle"></h3>
+            <p class="text-muted mb-1">Confidence Score</p>
+            <h4 id="confidenceText"></h4>
+            <div class="confidence-bar-wrap">
+              <div class="confidence-bar" id="confidenceBar"></div>
+            </div>
+            <hr>
+            <p class="mb-1"><strong>Reason:</strong> <span id="resultReason"></span></p>
+            <p class="mb-0"><strong>Recommendation:</strong> <span id="resultRecommendation"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Workflow -->
+<section id="workflow">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="section-eyebrow">How It Works</div>
+      <h2 class="section-title">Prediction Workflow</h2>
+    </div>
+    <div class="row g-4 workflow-wrap">
+      <div class="col-md-3 workflow-step reveal">
+        <div class="workflow-num">1</div>
+        <h6>Fill Applicant Details</h6>
+        <p class="text-muted small">Enter accurate details in the eligibility form.</p>
+        <i class="fa-solid fa-arrow-right workflow-arrow"></i>
+      </div>
+      <div class="col-md-3 workflow-step reveal">
+        <div class="workflow-num">2</div>
+        <h6>AI Model Analysis</h6>
+        <p class="text-muted small">Our ML model analyzes the submitted data.</p>
+        <i class="fa-solid fa-arrow-right workflow-arrow"></i>
+      </div>
+      <div class="col-md-3 workflow-step reveal">
+        <div class="workflow-num">3</div>
+        <h6>Eligibility Prediction</h6>
+        <p class="text-muted small">System predicts eligibility with confidence score.</p>
+        <i class="fa-solid fa-arrow-right workflow-arrow"></i>
+      </div>
+      <div class="col-md-3 workflow-step reveal">
+        <div class="workflow-num">4</div>
+        <h6>Generate Result</h6>
+        <p class="text-muted small">Detailed result with reason and recommendation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section id="features" style="background:linear-gradient(180deg,var(--bg),#eef3f8);">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="section-eyebrow">Why This System</div>
+      <h2 class="section-title">Key Features</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4 reveal">
+        <div class="gov-card"><div class="icon-box"><i class="fa-solid fa-robot"></i></div><h5>AI Powered</h5><p class="text-muted small mb-0">Intelligent decision-making built on trained models.</p></div>
+      </div>
+      <div class="col-md-4 reveal">
+        <div class="gov-card"><div class="icon-box saffron"><i class="fa-solid fa-diagram-project"></i></div><h5>Machine Learning</h5><p class="text-muted small mb-0">Continuously refined using verified applicant data.</p></div>
+      </div>
+      <div class="col-md-4 reveal">
+        <div class="gov-card"><div class="icon-box green"><i class="fa-solid fa-lock"></i></div><h5>Secure Data</h5><p class="text-muted small mb-0">Applicant data handled with government-grade security.</p></div>
+      </div>
+      <div class="col-md-4 reveal">
+        <div class="gov-card"><div class="icon-box"><i class="fa-solid fa-gauge-high"></i></div><h5>Fast Prediction</h5><p class="text-muted small mb-0">Results delivered within seconds of submission.</p></div>
+      </div>
+      <div class="col-md-4 reveal">
+        <div class="gov-card"><div class="icon-box saffron"><i class="fa-solid fa-scale-balanced"></i></div><h5>Government Standards</h5><p class="text-muted small mb-0">Aligned with official eligibility norms and guidelines.</p></div>
+      </div>
+      <div class="col-md-4 reveal">
+        <div class="gov-card"><div class="icon-box green"><i class="fa-solid fa-crosshairs"></i></div><h5>High Accuracy</h5><p class="text-muted small mb-0">Model validated for consistent, reliable predictions.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats-section">
+  <div class="container">
+    <div class="row text-center g-4">
+      <div class="col-6 col-md-3 reveal">
+        <div class="stat-num" data-target="200000" data-suffix="+">0</div>
+        <div class="stat-label">Records Processed</div>
+      </div>
+      <div class="col-6 col-md-3 reveal">
+        <div class="stat-num" data-target="95" data-suffix="%">0</div>
+        <div class="stat-label">Prediction Accuracy</div>
+      </div>
+      <div class="col-6 col-md-3 reveal">
+        <div class="stat-num" data-target="24" data-suffix="x7">0</div>
+        <div class="stat-label">Availability</div>
+      </div>
+      <div class="col-6 col-md-3 reveal">
+        <div class="stat-num" data-target="100" data-suffix="%">0</div>
+        <div class="stat-label">Instant Results</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="section-eyebrow">FAQ</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+    </div>
+    <div class="accordion reveal" id="faqAccordion" style="max-width:800px;margin:0 auto;">
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">What is this scheme?</button></h2>
+        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Sanjay Gandhi Niradhar Pension Yojana is a Maharashtra state scheme providing monthly financial assistance to destitute and economically vulnerable citizens.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">Who is eligible?</button></h2>
+        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Widows, orphans, disabled persons, and other destitute individuals falling below the specified income limit and meeting residency criteria are eligible.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">How does AI prediction work?</button></h2>
+        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">The system analyzes applicant details such as income, age, disability, and documentation using a trained machine learning model to predict eligibility and confidence.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">Is my data secure?</button></h2>
+        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Yes, all applicant data is processed following government data protection standards and is used only for eligibility assessment.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">Can I apply online?</button></h2>
+        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Yes, after checking eligibility on this portal, you can proceed to the official application through your district Social Justice office or the Aaple Sarkar portal.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" style="background:linear-gradient(180deg,var(--bg),#eef3f8);">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="section-eyebrow">Get in Touch</div>
+      <h2 class="section-title">Contact Department</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="contact-card"><i class="fa-solid fa-building-columns fa-lg mb-2" style="color:var(--navy)"></i>
+          <h6>Department</h6><p class="text-muted small mb-0">Social Justice &amp; Special Assistance, Govt. of Maharashtra</p></div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="contact-card"><i class="fa-solid fa-phone fa-lg mb-2" style="color:var(--navy)"></i>
+          <h6>Toll Free Number</h6><p class="text-muted small mb-0">1800-120-8040</p></div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="contact-card"><i class="fa-solid fa-envelope fa-lg mb-2" style="color:var(--navy)"></i>
+          <h6>Email</h6><p class="text-muted small mb-0">support-sgnpy@maharashtra.gov.in</p></div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="contact-card"><i class="fa-solid fa-clock fa-lg mb-2" style="color:var(--navy)"></i>
+          <h6>Working Hours</h6><p class="text-muted small mb-0">Mon - Fri, 10:00 AM - 5:30 PM</p></div>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12 reveal">
+        <div class="contact-card">
+          <h6><i class="fa-solid fa-location-dot me-2" style="color:var(--saffron-dark)"></i>Office Address</h6>
+          <p class="text-muted small">Mantralaya, Madam Cama Road, Hutatma Rajguru Chowk, Mumbai, Maharashtra - 400032</p>
+          <div class="map-placeholder">
+            <i class="fa-solid fa-map fa-2x"></i>
+            <span>Google Maps Embed Placeholder</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <h5>Government of Maharashtra</h5>
+        <p class="small">Department of Social Justice and Special Assistance. AI-Based Sanjay Gandhi Niradhar Pension Yojana Eligibility Prediction System.</p>
+        <div class="d-flex mt-3">
+          <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled small">
+          <li class="mb-2"><a href="#home">Home</a></li>
+          <li class="mb-2"><a href="#about">About Scheme</a></li>
+          <li class="mb-2"><a href="#eligibility">Eligibility Checker</a></li>
+          <li class="mb-2"><a href="#faq">FAQ</a></li>
+          <li class="mb-2"><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>Legal</h5>
+        <ul class="list-unstyled small">
+          <li class="mb-2"><a href="#">Privacy Policy</a></li>
+          <li class="mb-2"><a href="#">Terms of Use</a></li>
+          <li class="mb-2"><a href="#">Accessibility Statement</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <p class="small text-center mb-0">&copy; <span id="currentYear"></span> Government of Maharashtra. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<button id="backToTop"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- Toast -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="mainToast" class="toast align-items-center text-white bg-success border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body" id="toastBody">Message</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+// ===== Loader =====
+window.addEventListener('load', () => {
+  const loader = document.getElementById('pageLoader');
+  setTimeout(() => {
+    loader.style.opacity = '0';
+    loader.style.visibility = 'hidden';
+  }, 600);
+});
+
+// ===== Scroll progress + navbar shadow + back to top =====
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('scrollProgress').style.width = (scrollTop / docHeight * 100) + '%';
+
+  const nav = document.getElementById('mainNav');
+  if (scrollTop > 30) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+
+  document.getElementById('backToTop').style.display = scrollTop > 400 ? 'block' : 'none';
+});
+
+document.getElementById('backToTop').addEventListener('click', () => {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+});
+
+// ===== Smooth scrolling for nav links =====
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', function(e){
+    const target = document.querySelector(this.getAttribute('href'));
+    if(target){
+      e.preventDefault();
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+      const navCollapse = document.getElementById('navContent');
+      if(navCollapse.classList.contains('show')){
+        bootstrap.Collapse.getInstance(navCollapse)?.hide();
+      }
+    }
+  });
+});
+
+// ===== Fade-in on scroll (IntersectionObserver) =====
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.15});
+revealEls.forEach(el => revealObserver.observe(el));
+
+// ===== Animated counters =====
+const counters = document.querySelectorAll('.stat-num');
+let countersStarted = false;
+const statsSection = document.querySelector('.stats-section');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting && !countersStarted){
+      countersStarted = true;
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const suffix = counter.getAttribute('data-suffix') || '';
+        const duration = 1500;
+        const startTime = performance.now();
+        function update(now){
+          const progress = Math.min((now - startTime) / duration, 1);
+          const value = Math.floor(progress * target);
+          counter.textContent = value.toLocaleString('en-IN') + (progress === 1 ? suffix : '');
+          if(progress < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+      });
+    }
+  });
+}, {threshold:0.3});
+if(statsSection) counterObserver.observe(statsSection);
+
+// ===== Dark mode toggle =====
+const darkToggle = document.getElementById('darkModeToggle');
+darkToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  const icon = darkToggle.querySelector('i');
+  icon.classList.toggle('fa-moon');
+  icon.classList.toggle('fa-sun');
+});
+
+// ===== Current year =====
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+// ===== Toast helper =====
+function showToast(message, type){
+  const toastEl = document.getElementById('mainToast');
+  const toastBody = document.getElementById('toastBody');
+  toastBody.textContent = message;
+  toastEl.classList.remove('bg-success','bg-danger');
+  toastEl.classList.add(type === 'error' ? 'bg-danger' : 'bg-success');
+  const toast = new bootstrap.Toast(toastEl, {delay: 3500});
+  toast.show();
+}
+
+// ===== Eligibility Form: validation + prediction =====
+const form = document.getElementById('eligibilityForm');
+const resultSection = document.getElementById('resultSection');
+
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  e.stopPropagation();
+
+  if(!form.checkValidity()){
+    form.classList.add('was-validated');
+    showToast('Please fill all required fields correctly.', 'error');
+    return;
+  }
+  form.classList.add('was-validated');
+
+  const btn = document.getElementById('predictBtn');
+  const originalHtml = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Analyzing...';
+
+  // Collect form data — keys match the ML model's feature names exactly
+  const formData = {
+   
+    Age: document.getElementById('age').value,
+    Gender: document.getElementById('gender').value,
+    District: document.getElementById('district').value,
+    Taluka: document.getElementById('taluka').value,
+    Residence_Years: document.getElementById('residenceYears').value,
+    Annual_Family_Income: document.getElementById('annualIncome').value,
+    Monthly_Expenses: document.getElementById('monthlyExpenses').value,
+    Family_Size: document.getElementById('familySize').value,
+    Marital_Status: document.getElementById('maritalStatus').value,
+    Occupation: document.getElementById('occupation').value,
+    Education: document.getElementById('education').value,
+    Employment_Status: document.getElementById('employmentStatus').value,
+    Disability_Status: document.getElementById('disabilityStatus').value,
+    Disability_Percentage: document.getElementById('disabilityPercent').value,
+    Chronic_Disease: document.getElementById('chronicDisease').value,
+    Disease_Type: document.getElementById('diseaseType').value,
+    Widow: document.getElementById('widowStatus').value,
+    Divorced: document.getElementById('divorcedStatus').value,
+    Destitute: document.getElementById('destituteStatus').value,
+    Orphan: document.getElementById('orphanStatus').value,
+    Senior_Citizen: document.getElementById('seniorCitizen').value,
+    BPL_Status: document.getElementById('bplStatus').value,
+    House_Ownership: document.getElementById('houseOwnership').value,
+    Land_Ownership_Acres: document.getElementById('landOwnership').value,
+    Aadhaar_Linked: document.getElementById('aadhaarLinked').value,
+    Bank_Account: document.getElementById('bankAccount').value,
+    Mobile_Linked: document.getElementById('mobileLinked').value,
+    Income_Certificate: document.getElementById('incomeCertificate').value,
+    Disability_Certificate: document.getElementById('disabilityCertificate').value,
+    Ration_Card: document.getElementById('rationCard').value
+  };
+
+  /*
+    ============================================================
+    BACKEND INTEGRATION (Flask):
+    Replace the setTimeout dummy block below with:
+
+    fetch("/predict", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(data => {
+      renderResult(data.prediction, data.confidence, data.reason, data.recommendation);
+    })
+    .catch(err => showToast('Server error. Please try again.', 'error'))
+    .finally(() => { btn.disabled = false; btn.innerHTML = originalHtml; });
+    ============================================================
+  */
+
+  setTimeout(() => {
+    const dummyResult = generateDummyPrediction(formData);
+    renderResult(dummyResult.prediction, dummyResult.confidence, dummyResult.reason, dummyResult.recommendation);
+    btn.disabled = false;
+    btn.innerHTML = originalHtml;
+  }, 1400);
+});
+
+function generateDummyPrediction(data){
+  // Simple placeholder logic until the Flask/ML backend is connected
+  let score = 50;
+  if(+data.Annual_Family_Income < 21000) score += 15;
+  if(data.BPL_Status === 'Yes') score += 12;
+  if(data.Widow === 'Yes' || data.Orphan === 'Yes' || data.Destitute === 'Yes') score += 10;
+  if(data.Divorced === 'Yes') score += 5;
+  if(data.Senior_Citizen === 'Yes') score += 5;
+  if(+data.Disability_Percentage >= 40) score += 8;
+  if(data.Chronic_Disease === 'Yes') score += 5;
+  if(+data.Land_Ownership_Acres > 5) score -= 10;
+  if(data.Aadhaar_Linked === 'No' || data.Income_Certificate === 'No') score -= 20;
+  if(data.Bank_Account === 'No') score -= 8;
+  if(data.Ration_Card === 'Yes') score += 3;
+  score = Math.max(5, Math.min(98, score));
+
+  const eligible = score >= 60;
+  return {
+    prediction: eligible ? 'Eligible' : 'Not Eligible',
+    confidence: score,
+    reason: eligible
+      ? 'Applicant meets income, vulnerability, and documentation criteria as per scheme guidelines.'
+      : 'Applicant does not fully meet the income, vulnerability, or documentation requirements of the scheme.',
+    recommendation: eligible
+      ? 'Proceed to submit the physical application at your district Social Justice office with original documents.'
+      : 'Please complete pending certificates (income/disability) and Aadhaar linkage, then re-check eligibility.'
+  };
+}
+
+function renderResult(prediction, confidence, reason, recommendation){
+  const isEligible = prediction === 'Eligible';
+  const card = document.getElementById('resultCard');
+  const icon = document.getElementById('resultIcon');
+  const title = document.getElementById('resultTitle');
+  const confText = document.getElementById('confidenceText');
+  const confBar = document.getElementById('confidenceBar');
+
+  card.className = 'result-card ' + (isEligible ? 'eligible' : 'not-eligible');
+  icon.className = 'result-icon ' + (isEligible ? 'eligible' : 'not-eligible');
+  icon.innerHTML = isEligible ? '<i class="fa-solid fa-circle-check"></i>' : '<i class="fa-solid fa-circle-xmark"></i>';
+  title.textContent = isEligible ? '✅ Eligible' : '❌ Not Eligible';
+  title.style.color = isEligible ? 'var(--green)' : '#c0392b';
+
+  confText.textContent = confidence + '% Confidence';
+  confBar.style.width = '0%';
+  confBar.style.background = isEligible ? 'var(--green)' : '#c0392b';
+  setTimeout(() => { confBar.style.width = confidence + '%'; }, 100);
+
+  document.getElementById('resultReason').textContent = reason;
+  document.getElementById('resultRecommendation').textContent = recommendation;
+
+  resultSection.style.display = 'block';
+  resultSection.scrollIntoView({behavior:'smooth', block:'start'});
+  showToast(isEligible ? 'Prediction complete: Applicant is Eligible.' : 'Prediction complete: Applicant is Not Eligible.', isEligible ? 'success' : 'error');
+}
+</script>
+</body>
+</html>
